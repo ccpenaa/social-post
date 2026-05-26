@@ -1,5 +1,7 @@
 # AI Social Post Generator
 
+![AI Social Post Generator Dashboard UI](https://cdn.muapi.ai/data/2/549775676598/Screenshot_2026-05-26_181917.png)
+
 Generate highly engaging, optimized, and high-conversion social media posts for multiple platforms using AI. Powered by MuAPI's `any-llm` model with tailored tone structures and visual preview mockups.
 
 ## 🌐 Project Details
@@ -14,7 +16,7 @@ Generate highly engaging, optimized, and high-conversion social media posts for 
 
 ## ✨ Features
 
-- 💼 **4 Premium Platforms** — LinkedIn, Twitter / X, Facebook, and Instagram
+- 💼 **6 Premium Platforms** — LinkedIn, Twitter / X, Facebook, Instagram, Reddit, and LINE
 - 🎨 **5 Custom Tones** — Professional, Casual, Inspirational, Humorous, and Bold
 - ⚡ **Instant Post Generation** — AI-powered high-engagement copies generated in seconds
 - 💳 **Just 4 Credits Per Post** — Deducts only 4 credits ($0.02) per generated post
