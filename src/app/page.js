@@ -565,6 +565,27 @@ export default function WorkspacePage() {
           return "x.com";
       }
     };
+
+    const getPlatformIntentUrl = () => {
+      const text = currentParsed?.postText || "";
+      const headline = currentParsed?.headline || "AI Social Post";
+      const shareUrl = "https://socialpost-sites.easysite.ai/generator";
+
+      switch (platform) {
+        case "Twitter / X":
+          return `https://x.com/intent/tweet?text=${encodeURIComponent(text)}`;
+        case "LinkedIn":
+          return `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
+        case "Facebook":
+          return `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
+        case "Reddit":
+          return `https://www.reddit.com/submit?url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(headline)}`;
+        case "Line":
+          return `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(text)}`;
+        default:
+          return `https://${getPlatformDomain()}`;
+      }
+    };
     
     // Connect Platform Icon
     const getPlatformBrandIcon = () => {
@@ -672,16 +693,16 @@ export default function WorkspacePage() {
               </div>
               <h3 className="text-base font-bold text-white mb-2">Published Successfully!</h3>
               <p className="text-xs text-zinc-400 max-w-xs leading-relaxed mb-6">
-                Your post was successfully transmitted and published live to your official <span className="font-semibold text-zinc-200">{platform}</span> feed!
+                Your post was compiled for <span className="font-semibold text-zinc-200">{platform}</span>. Click the button below to pre-fill the composer window live!
               </p>
 
               <div className="bg-zinc-950 border border-zinc-800 rounded-xl p-3.5 w-full text-left max-w-xs mx-auto mb-6">
                 <div className="flex items-center justify-between text-[9px] text-zinc-500 uppercase font-semibold mb-1">
-                  <span>Resource Link</span>
-                  <span className="text-emerald-400 font-bold">Live</span>
+                  <span>Intent URL Gateway</span>
+                  <span className="text-emerald-400 font-bold">Ready</span>
                 </div>
-                <div className="text-[10px] text-zinc-300 font-mono truncate select-all">
-                  https://{getPlatformDomain()}/socialpost/status/987254
+                <div className="text-[10px] text-zinc-350 font-mono truncate select-all">
+                  https://{getPlatformDomain()}/share-intent-gateway
                 </div>
               </div>
 
@@ -694,12 +715,12 @@ export default function WorkspacePage() {
                   Close Window
                 </button>
                 <a
-                  href={`https://${getPlatformDomain()}`}
+                  href={getPlatformIntentUrl()}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-4 py-2 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-bold rounded-lg transition-all shadow-md shadow-emerald-500/15 cursor-pointer text-center flex items-center justify-center"
                 >
-                  View Feed Post
+                  Launch & Post
                 </a>
               </div>
             </div>
