@@ -4,7 +4,7 @@
 
 ## 🌐 Try the Live Engine
 
-**Hosted Demo:** [social-post.vercel.app](https://social-post.vercel.app/)
+**Hosted Demo:** [social-post-woad.vercel.app](https://social-post-woad.vercel.app/)
 
 Experience the full glassmorphic, responsive interface. Sign in with Google to explore the Studio, customize dropdowns (Language, Character Length, and Tones), and preview mock social feeds directly from your browser.
 
