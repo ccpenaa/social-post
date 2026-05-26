@@ -57,7 +57,7 @@ To successfully deploy and run, you must populate the following environment vari
 | **Database**          | `DATABASE_URL`                       | PostgreSQL connection string ([Supabase](https://supabase.com) shared pool with pgbouncer)  |
 |                       | `DIRECT_URL`                         | Direct DB connection for Prisma migrations and pushes                                        |
 | **NextAuth / Google** | `NEXTAUTH_SECRET`                    | Secure random string generated via `openssl rand -base64 32`                                 |
-|                       | `NEXTAUTH_URL`                       | Your production domain (e.g. `https://my-app.vercel.app`)                                    |
+|                       | `NEXTAUTH_URL`                       | Your production domain (e.g. `https://social-post-woad.vercel.app`)                          |
 |                       | `GOOGLE_CLIENT_ID`                   | Get from [Google Cloud Console](https://console.cloud.google.com/apis/credentials)           |
 |                       | `GOOGLE_CLIENT_SECRET`               | Get from [Google Cloud Console](https://console.cloud.google.com/apis/credentials)           |
 | **Stripe Billing**    | `STRIPE_SECRET_KEY`                  | Get from [Stripe Dashboard](https://dashboard.stripe.com/apikeys)                            |
@@ -74,8 +74,8 @@ To successfully deploy and run, you must populate the following environment vari
 4. **Deploy**: Hit "Deploy". Vercel will automatically run the build steps (`npm run build`).
 5. **Database Push**: Since Prisma does not automatically migrate via Vercel builds by default, you may want to append `npx prisma db push && ` to your Vercel build command, or manually run it locally pointing to your production database URL.
 6. **Integrations Setup**:
-   - Establish a **Google Cloud OAuth app**, enabling the callback URL: `https://your-app.vercel.app/api/auth/callback/google`
-   - Setup a **Stripe Webhook**, pointing to `https://your-app.vercel.app/api/stripe/webhook` and selecting the `checkout.session.completed` event to grab your webhook signing secret.
+   - Establish a **Google Cloud OAuth app**, enabling the callback URL: `https://social-post-woad.vercel.app/api/auth/callback/google`
+   - Setup a **Stripe Webhook**, pointing to `https://social-post-woad.vercel.app/api/stripe/webhook` and selecting the `checkout.session.completed` event to grab your webhook signing secret.
 
 ---
 
