@@ -67,4 +67,7 @@ model SocialPostCreation {
   creditCost   Int      @default(4)
   createdAt    DateTime @default(now())
   User         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  language     String   @default("English")
+  charLength   String   @default("Medium")
+  includeTitle Boolean  @default(true)
 }

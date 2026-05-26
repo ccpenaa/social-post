@@ -12,6 +12,13 @@ import {
   FaTimes,
   FaGoogle,
   FaShare,
+  FaLinkedin,
+  FaTwitter,
+  FaFacebook,
+  FaInstagram,
+  FaReddit,
+  FaLine,
+  FaGlobe,
 } from "react-icons/fa";
 
 function StatusDot({ status }) {
@@ -21,6 +28,25 @@ function StatusDot({ status }) {
     return <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block" />;
   return <span className="w-2 h-2 rounded-full bg-red-500 inline-block" />;
 }
+
+const getPlatformIcon = (platformName) => {
+  switch (platformName) {
+    case "LinkedIn":
+      return <FaLinkedin className="text-[#0a66c2]" />;
+    case "Twitter / X":
+      return <FaTwitter className="text-zinc-300" />;
+    case "Facebook":
+      return <FaFacebook className="text-[#1877f2]" />;
+    case "Instagram":
+      return <FaInstagram className="text-[#e1306c]" />;
+    case "Reddit":
+      return <FaReddit className="text-[#ff4500]" />;
+    case "Line":
+      return <FaLine className="text-[#06c755]" />;
+    default:
+      return <FaGlobe className="text-zinc-400" />;
+  }
+};
 
 export default function GalleryPage() {
   const { data: session, status: authStatus } = useSession();
@@ -96,7 +122,7 @@ export default function GalleryPage() {
       return (
         <div className="border border-zinc-800 bg-zinc-950 rounded-xl p-4 w-full text-zinc-100 text-left text-xs mb-4">
           <div className="flex items-center gap-2 mb-3">
-            <img src={userAvatar} alt="avatar" className="w-8 h-8 rounded-full object-cover border border-zinc-700" />
+            <img src={userAvatar} alt="avatar" className="w-8 h-8 rounded-full object-cover border border-zinc-700 shrink-0" />
             <div>
               <h4 className="font-semibold text-white">{userName}</h4>
               <p className="text-[9px] text-zinc-500">Social Media Expert • 1st</p>
@@ -113,7 +139,7 @@ export default function GalleryPage() {
       return (
         <div className="border border-zinc-800 bg-black rounded-xl p-4 w-full text-zinc-100 text-left text-xs mb-4">
           <div className="flex items-center gap-2 mb-3">
-            <img src={userAvatar} alt="avatar" className="w-8 h-8 rounded-full object-cover border border-zinc-700" />
+            <img src={userAvatar} alt="avatar" className="w-8 h-8 rounded-full object-cover border border-zinc-700 shrink-0" />
             <div>
               <h4 className="font-semibold text-white flex items-center gap-1">
                 {userName}
@@ -133,7 +159,7 @@ export default function GalleryPage() {
       return (
         <div className="border border-zinc-800 bg-zinc-950 rounded-xl w-full text-zinc-100 text-left text-xs overflow-hidden mb-4">
           <div className="flex items-center gap-2 p-2 border-b border-zinc-900">
-            <img src={userAvatar} alt="avatar" className="w-6 h-6 rounded-full object-cover" />
+            <img src={userAvatar} alt="avatar" className="w-6 h-6 rounded-full object-cover shrink-0" />
             <h4 className="font-semibold text-[10px] text-white">{userName}</h4>
           </div>
           <div className="aspect-video bg-gradient-to-tr from-purple-900/60 to-indigo-900/60 flex flex-col items-center justify-center p-4 text-center">
@@ -141,9 +167,53 @@ export default function GalleryPage() {
             <p className="text-[8px] text-zinc-400 mt-1 max-w-xs">{item.topic}</p>
           </div>
           <div className="p-3">
-            <div className="whitespace-pre-wrap leading-relaxed text-zinc-200">
+            <div className="whitespace-pre-wrap leading-relaxed text-zinc-250">
               <span className="font-bold text-white mr-1">{userName.toLowerCase().replace(/\s+/g, "")}</span>
               {data.postText}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    if (item.platform === "Reddit") {
+      return (
+        <div className="border border-zinc-800 bg-[#1a1a1b] rounded-xl p-4 w-full text-zinc-200 text-left text-xs mb-4">
+          <div className="flex items-center gap-2 mb-2">
+            <div className="w-5 h-5 rounded-full bg-[#ff4500] flex items-center justify-center text-white shrink-0">
+              <FaReddit className="text-[10px]" />
+            </div>
+            <div>
+              <span className="font-semibold text-[10px] text-zinc-100 hover:underline cursor-pointer">r/socialpost</span>
+              <span className="text-[9px] text-zinc-500 ml-2">Posted by u/copywriter 2h ago</span>
+            </div>
+          </div>
+          {data.headline && (
+            <h3 className="font-bold text-xs text-zinc-100 mb-2 leading-snug">
+              {data.headline}
+            </h3>
+          )}
+          <div className="whitespace-pre-wrap leading-relaxed text-zinc-300 mb-3 font-sans">
+            {data.postText}
+          </div>
+        </div>
+      );
+    }
+
+    if (item.platform === "Line") {
+      return (
+        <div className="border border-zinc-800 bg-[#8cabd9] rounded-xl p-4 w-full text-zinc-800 text-left text-xs relative overflow-hidden min-h-[180px] flex flex-col justify-between mb-4">
+          <div className="flex items-start gap-2 max-w-[90%] pt-2">
+            <img src={userAvatar} alt="avatar" className="w-6 h-6 rounded-full object-cover shrink-0 border border-zinc-300" />
+            <div className="flex flex-col">
+              <span className="text-[8px] font-semibold text-zinc-650 mb-0.5 ml-1">{userName}</span>
+              <div className="flex items-end gap-1">
+                <div className="bg-white text-zinc-900 rounded-xl rounded-tl-none p-2.5 shadow-sm leading-normal whitespace-pre-wrap font-sans text-[10px]">
+                  {data.headline && <p className="font-bold text-[10px] border-b border-zinc-100 pb-0.5 mb-0.5 text-zinc-950">{data.headline}</p>}
+                  {data.postText}
+                </div>
+                <span className="text-[7px] text-zinc-600 shrink-0 whitespace-nowrap mb-0.5">5:24 PM</span>
+              </div>
             </div>
           </div>
         </div>
@@ -217,9 +287,7 @@ export default function GalleryPage() {
                   {/* Card Header */}
                   <div className="flex items-center justify-between mb-2 shrink-0">
                     <span className="text-xs font-bold text-zinc-300 flex items-center gap-1.5">
-                      <span>
-                        {c.platform === "LinkedIn" ? "💼" : c.platform === "Instagram" ? "📸" : c.platform === "Twitter / X" ? "🐦" : "👥"}
-                      </span>
+                      {getPlatformIcon(c.platform)}
                       {c.platform}
                     </span>
                     <div className="flex items-center gap-1.5">

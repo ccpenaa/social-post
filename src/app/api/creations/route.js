@@ -56,7 +56,7 @@ export async function POST(req) {
     const session = await getServerSession(authOptions);
     if (!session?.user) return new NextResponse("Unauthorized", { status: 401 });
 
-    const { topic, platformId, toneId, includeEmojis, includeHashtags } = await req.json();
+    const { topic, platformId, toneId, includeEmojis, includeHashtags, language, charLength, includeTitle } = await req.json();
 
     if (!topic || topic.trim() === "") {
       return new NextResponse("Missing topic description", { status: 400 });
@@ -81,6 +81,9 @@ export async function POST(req) {
       toneId,
       includeEmojis: includeEmojis !== false,
       includeHashtags: includeHashtags !== false,
+      language: language || "english",
+      charLength: charLength || "medium",
+      includeTitle: includeTitle !== false,
     });
 
     return NextResponse.json(creation);
