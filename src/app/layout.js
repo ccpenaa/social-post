@@ -6,7 +6,6 @@ import Navbar from "@/components/Navbar";
 
 const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-inter",
 });
 
 export const metadata = {
@@ -35,7 +34,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body
-        className={`${inter.variable} font-sans antialiased min-h-screen bg-bg-page text-primary-text flex flex-col`}
+        className={`${inter.className} antialiased min-h-screen bg-bg-page text-primary-text flex flex-col`}
       >
         <Providers>
           <Navbar />
